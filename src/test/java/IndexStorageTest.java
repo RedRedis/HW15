@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,11 +18,12 @@ class IndexStorageTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void getIndexTest() {
+    @ParameterizedTest
+    @CsvFileSource(files="src/test/resources/getIndexStorageTest.csv")
+    public void getIndexTest(int index, int number) {
 
-        int actual = indexStorage.get(5);
-        int expected = -5;
+        int actual = indexStorage.get(index);
+        int expected = number;
 
         assertEquals(expected, actual);
     }
